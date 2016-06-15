@@ -1,0 +1,78 @@
+package swfdrawer.data 
+{
+	import flash.geom.Matrix;
+	import flash.geom.Rectangle;
+	import swfdata.ColorData;
+	import swfdata.ColorMatrix;
+	import swfdata.DisplayObjectData;
+	import swfdata.swfdata_inner;
+	
+	use namespace swfdata_inner;
+	
+	public class DrawingData 
+	{
+		private var isClear:Boolean = true;
+		
+		public var bound:Rectangle = null;
+		
+		public var maskId:int = -1;
+		public var isMask:Boolean = false;
+		public var isMasked:Boolean = false;
+		
+		public var transform:Matrix = null;
+		
+		public var isApplyColorTrasnform:Boolean = false;
+		public var colorTransform:ColorMatrix = new ColorMatrix(null);
+		
+		public var colorData:ColorData = new ColorData();
+		
+		public function DrawingData() 
+		{
+			
+		}
+		
+		public function addColorTransform(colorTransformToApply:ColorMatrix):void
+		{
+			isApplyColorTrasnform = true;
+			//this.colorTransform.reset();
+			this.colorTransform.premultiply(colorTransformToApply.matrix);
+		}
+		
+		public function clear():void
+		{
+			//if (isClear == false)
+			//	return;
+			
+			//isClear = true;
+			colorData.clear();
+			
+			isApplyColorTrasnform = false;
+			//colorTransform.reset();// [0] = -1234;
+			
+			maskId = -1;
+			isMask = false;
+			isMasked = false;
+			transform = null;
+			bound = null;
+		}
+		
+		public function mulColorData(colorData:ColorData):void
+		{
+			//isClear = false;
+			this.colorData.mulColorData(colorData);
+		}
+		
+		public function setFromDisplayObject(drawable:DisplayObjectData):void 
+		{
+			//isClear = false;
+			
+			isMask = isMask || drawable.isMask;
+			isMasked = isMasked || (drawable.mask != null);
+			//maskId = maskId || drawable.clipDepth;
+			
+			//TODO: в SpriteDrawer и MovieClipDrawer нужно сохранять состояние колора для каждого из потдеревьев потомков
+			//colorData.mulColorData(drawable.colorData);
+		}
+		
+	}
+}
