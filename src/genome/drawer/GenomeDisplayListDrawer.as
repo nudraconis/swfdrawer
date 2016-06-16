@@ -121,7 +121,7 @@ package genome.drawer
 				throw new Error("drawer for " + displayObject + " is not defined");
 		}
 		
-		public function setHightlightColor(value:uint, alpha:Number):void
+		public function setHightlightColor(value:uint, alpha:Number, size:Number = 2.5):void
 		{
 			var r:Number = ((value >> 16) & 0xFF) / 0xFF;
 			var g:Number = ((value >> 8) & 0xFF) / 0xFF;
@@ -131,7 +131,7 @@ package genome.drawer
 			GenomeDrawer.outline.green = g;
 			GenomeDrawer.outline.blue = b;
 			GenomeDrawer.outline.alpha = alpha;
-			GenomeDrawer.outline.size = 2.5;
+			GenomeDrawer.outline.size = size;
 		}
 		
 		public function set hightlight(value:Boolean):void 
