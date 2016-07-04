@@ -125,11 +125,11 @@ package swfdrawer
 			var g:Number = ((value >> 8) & 0xFF) / 0xFF;
 			var b:Number = (value & 0xFF) / 0xFF;
 			
-			GenomeDrawer.outline.red = r;
-			GenomeDrawer.outline.green = g;
-			GenomeDrawer.outline.blue = b;
-			GenomeDrawer.outline.alpha = alpha;
-			GenomeDrawer.outline.size = 2.5;
+			//GenomeDrawer.outline.red = r;
+			//GenomeDrawer.outline.green = g;
+			//GenomeDrawer.outline.blue = b;
+			//GenomeDrawer.outline.alpha = alpha;
+			//GenomeDrawer.outline.size = 2.5;
 		}
 		
 		public function set hightlight(value:Boolean):void 

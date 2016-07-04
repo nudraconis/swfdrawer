@@ -28,7 +28,9 @@ package genome.drawer
 	public class GenomeDrawer implements IDrawer
 	{
 		public static var grassWind:GrassWind = new GrassWind();
-		public static var outline:PixelOutline = new PixelOutline();
+		
+		//TODO: нужно фильтры все сделать единичными инстансами, а данные для них для каждого конркетного объекта наоборот
+		public var outline:PixelOutline = new PixelOutline();
 		
 		public static var colorFilter:ColorFilterSwitch = new ColorFilterSwitch();
 		

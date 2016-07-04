@@ -32,7 +32,7 @@ package genome.drawer
 		
 		private var _atlas:ITextureAtlas;
 		
-		public function GenomeDisplayListDrawer(atlas:ITextureAtlas, mousePoint:Point) 
+		public function GenomeDisplayListDrawer(atlas:ITextureAtlas = null, mousePoint:Point = null) 
 		{
 			this.mousePoint = mousePoint;
 			
@@ -121,17 +121,26 @@ package genome.drawer
 				throw new Error("drawer for " + displayObject + " is not defined");
 		}
 		
-		public function setHightlightColor(value:uint, alpha:Number, size:Number = 2.5):void
+		public function setHightlightColor(value:uint, alpha:Number):void
 		{
 			var r:Number = ((value >> 16) & 0xFF) / 0xFF;
 			var g:Number = ((value >> 8) & 0xFF) / 0xFF;
 			var b:Number = (value & 0xFF) / 0xFF;
 			
-			GenomeDrawer.outline.red = r;
-			GenomeDrawer.outline.green = g;
-			GenomeDrawer.outline.blue = b;
-			GenomeDrawer.outline.alpha = alpha;
-			GenomeDrawer.outline.size = size;
+			shapeDrawer.outline.red = r;
+			shapeDrawer.outline.green = g;
+			shapeDrawer.outline.blue = b;
+			shapeDrawer.outline.alpha = alpha;
+		}
+		
+		public function get hightlightSize():int
+		{
+			return shapeDrawer.outline.size;
+		}
+		
+		public function set hightlightSize(value:int):void
+		{
+			shapeDrawer.outline.size = value;
 		}
 		
 		public function set hightlight(value:Boolean):void 

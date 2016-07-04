@@ -15,6 +15,7 @@ package genome.filters
 		public var green:Number = 1;
 		public var blue:Number = 1;
 		public var alpha:Number = 1;
+		public var outlineFactor:Number = 0.5;
 		
 		public function PixelOutline() 
 		{
@@ -25,8 +26,8 @@ package genome.filters
 								"mov	ft1	v0					\n" //vr buffer
 							+	"mov	ft3	v0					\n" //position buffer
 								 
-							//+	"tex	ft0	v0	fs0"				//main texture sample	#removed because need only outline shape
-							//+	"	<2d,linear,mipnone,clamp>	\n"
+							+	"tex	ft0	v0	fs0"				//main texture sample	#removed because need only outline shape
+							+	"	<2d,linear,mipnone,clamp>	\n"
 								 
 							+	"add	ft3.x	ft1.x	fc1.x	\n" //left border position
 							+	"tex	ft2		ft3		fs0"		//sample left border texture
@@ -51,14 +52,21 @@ package genome.filters
 							
 							+	"sat	ft2.w	ft2.w			\n" //Math.max(Math.min(alpha, 1), 0); because wee need alpha tob be <=1
 							
-							//+	"sub	ft2.w	ft2.w	ft0.w	\n" //cut mask and get only border #removed because need only outline shape
+							//+	"sge	ft2.w	ft2.w	fc1.z	\n"
+							//+	"mul	ft2.w	ft2.w	ft3.w	\n"
+							
+							+	"sub	ft2.w	ft2.w	ft0.w	\n" //cut mask and get only border #removed because need only outline shape
 							
 							+	"mul	ft2.xyz	fc2.xyz	ft2.wwww \n"//colorize
 							
-							//+	"add	ft0		ft2		ft0	\n" //add outline to result pixel #removed because need only outline shape
+							+	"add	ft0		ft2		ft0	\n" //add outline to result pixel #removed because need only outline shape
 							
 							+	"mov oc, ft2"
-							
+			//TODO: Чтобы вырезать центр аутлана нужн доп сэмпл, тот что идет первым в шейдере
+			//поидеи можно вырезать центр другими путями типа как в инструциях SGE, MUL но долго 
+			//разбиратся не стал как сделать верно SGE, MUL дало не совсем хороший резуьлтат
+			//Смысл в том что цетральная чатсь будет иметь смешаную альфу гораздо выше боковых
+			//Поэтому ее можно обрезать.
 				
 			fragmentConstants = new <Number>[
 												0, 0, 0, 0, //outline x,y
@@ -77,10 +85,14 @@ package genome.filters
 		
 		override public function bind(p_context:IGContext, p_defaultTexture:GTexture):void 
 		{
+			//red = 0.9803921568627451;
+			//green = 0.5176470588235295
+			//blue = 0.00392156862745098
+			//size = 5;
 			//Dont forget that genome reserver fc0 so 0-4 registers is fc1
 			fragmentConstants[0] = size / p_defaultTexture.gpuWidth;
 			fragmentConstants[1] = size / p_defaultTexture.gpuHeight;
-			fragmentConstants[2] = 0;
+			fragmentConstants[2] = outlineFactor;
 			fragmentConstants[3] = 0;
 			
 			fragmentConstants[4] = red;
