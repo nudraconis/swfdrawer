@@ -2,7 +2,7 @@ package genome.filters
 {
 	import com.genome2d.textures.GTexture;
 	import com.genome2d.context.filters.GFilter;
-	import com.genome2d.context.IGContext;
+	import com.genome2d.context.IContext;
 	
 	/**
 	 * ...
@@ -83,7 +83,7 @@ package genome.filters
 			this.alpha = a;
 		}
 		
-		override public function bind(p_context:IGContext, p_defaultTexture:GTexture):void 
+		override public function bind(p_context:IContext, p_defaultTexture:GTexture):void 
 		{
 			//red = 0.9803921568627451;
 			//green = 0.5176470588235295

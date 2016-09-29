@@ -2,7 +2,7 @@ package genome.filters
 {
 	import com.genome2d.textures.GTexture;
 	import com.genome2d.context.filters.GFilter;
-	import com.genome2d.context.IGContext;
+	import com.genome2d.context.IContext;
 	import flash.display3D.Context3D;
 	import flash.display3D.Context3DBlendFactor;
 	
@@ -58,7 +58,7 @@ package genome.filters
 			_grassFactor = (_grassFactor + .05) % (Math.PI * 10);
 		}
 		
-		override public function bind(p_context:IGContext, p_defaultTexture:GTexture):void 
+		override public function bind(p_context:IContext, p_defaultTexture:GTexture):void 
 		{
 			//TODO: можно уменьшить константы т.к ну нужны регистры типа 1, 1, 1, 1 а все можно засунуть просто в 1 регистр 
 			//Dont forget that genome reserver fc0 so 0-4 registers is fc1
