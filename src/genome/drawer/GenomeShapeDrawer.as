@@ -3,7 +3,7 @@ package genome.drawer
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	import swfdata.atlas.GenomeTextureAtlas;
+	import swfdata.atlas.genome.GenomeTextureAtlas;
 	import swfdata.atlas.ITextureAtlas;
 	import swfdata.DisplayObjectData;
 	import swfdata.ShapeData;
