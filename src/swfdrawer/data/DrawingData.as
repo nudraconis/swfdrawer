@@ -31,14 +31,16 @@ package swfdrawer.data
 			
 		}
 		
-		public function addColorTransform(colorTransformToApply:ColorMatrix):void
+		[Inline]
+		public final function addColorTransform(colorTransformToApply:ColorMatrix):void
 		{
 			isApplyColorTrasnform = true;
 			//this.colorTransform.reset();
 			this.colorTransform.premultiply(colorTransformToApply.matrix);
 		}
 		
-		public function clear():void
+		[Inline]
+		public final function clear():void
 		{
 			//if (isClear == false)
 			//	return;
@@ -56,13 +58,15 @@ package swfdrawer.data
 			bound = null;
 		}
 		
-		public function mulColorData(colorData:ColorData):void
+		[Inline]
+		public final function mulColorData(colorData:ColorData):void
 		{
 			//isClear = false;
 			this.colorData.mulColorData(colorData);
 		}
 		
-		public function setFromDisplayObject(drawable:DisplayObjectData):void 
+		[Inline]
+		public final function setFromDisplayObject(drawable:DisplayObjectData):void 
 		{
 			//isClear = false;
 			
