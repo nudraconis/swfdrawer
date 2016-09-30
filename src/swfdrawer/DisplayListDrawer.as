@@ -7,7 +7,7 @@ package swfdrawer
 	import flash.utils.Dictionary;
 	import genome.drawer.GenomeDrawer;
 	import genome.drawer.GenomeShapeDrawer;
-	import swfdata.atlas.GenomeTextureAtlas;
+	import swfdata.atlas.genome.GenomeTextureAtlas;
 	import swfdata.atlas.ITextureAtlas;
 	import swfdata.ColorData;
 	import swfdata.DisplayObjectData;

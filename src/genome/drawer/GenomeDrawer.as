@@ -13,7 +13,7 @@ package genome.drawer
 	import genome.filters.ColorFilterSwitch;
 	import genome.filters.GrassWind;
 	import genome.filters.PixelOutline;
-	import swfdata.atlas.GenomeSubTexture;
+	import swfdata.atlas.genome.GenomeSubTexture;
 	import swfdata.atlas.ITextureAtlas;
 	import swfdata.atlas.TextureTransform;
 	import swfdata.ColorData;
