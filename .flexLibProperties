@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="swfdrawer.DisplayListDrawer"/>
+    <classEntry path="genome.filters.ColorFilterSwitch"/>
+    <classEntry path="genome.filters.GrassWind"/>
+    <classEntry path="genome.atlas.GenomeSubTexture"/>
+    <classEntry path="genome.drawer.GenomeDisplayListDrawer"/>
+    <classEntry path="genome.filters.PixelOutline"/>
+    <classEntry path="genome.drawer.GenomeDrawer"/>
+    <classEntry path="genome.drawer.GenomeShapeDrawer"/>
+    <classEntry path="genome.atlas.GenomeTextureAtlas"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
