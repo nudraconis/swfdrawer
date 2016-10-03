@@ -50,7 +50,7 @@ package genome.drawer
 		public var hitTestResult:Boolean = false;
 		
 		private var currentBoundForDraw:Rectangle = new Rectangle();
-		private var drawingRectagon:swfdata.Rectagon;
+		private var drawingRectagon:Rectagon;
 		
 		private var textureId:int;
 		private var currentSubTexture:GenomeSubTexture;
@@ -70,7 +70,7 @@ package genome.drawer
 		public function GenomeDrawer(mousePoint:Point) 
 		{
 			this.mousePoint = mousePoint;
-			drawingRectagon = new swfdata.Rectagon(0, 0, 0, 0, drawMatrix);
+			drawingRectagon = new Rectagon(0, 0, 0, 0, drawMatrix);
 		}
 		
 		public function clearMouseHitStatus():void
@@ -203,7 +203,9 @@ package genome.drawer
 		public function drawRectangle(drawingBounds:Rectangle, transform:Matrix):void 
 		{		
 			drawMatrix.identity();
-			drawMatrix.concat(transform);
+			
+			GeomMath.concatMatrices(drawMatrix, transform, drawMatrix);
+			//drawMatrix.concat(transform);
 			
 			applyDrawStyle();
 			
