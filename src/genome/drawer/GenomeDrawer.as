@@ -1,9 +1,9 @@
 package genome.drawer 
 {
+	import com.genome2d.Genome2D;
+	import com.genome2d.context.GBlendMode;
 	import com.genome2d.context.filters.GColorMatrixFilter;
 	import com.genome2d.context.filters.GFilter;
-	import com.genome2d.context.GBlendMode;
-	import com.genome2d.Genome2D;
 	import com.genome2d.textures.GTexture;
 	import com.genome2d.textures.GTextureFilteringType;
 	import flash.display.Graphics;
@@ -13,15 +13,15 @@ package genome.drawer
 	import genome.filters.ColorFilterSwitch;
 	import genome.filters.GrassWind;
 	import genome.filters.PixelOutline;
-	import swfdata.atlas.genome.GenomeSubTexture;
-	import swfdata.atlas.ITextureAtlas;
-	import swfdata.atlas.TextureTransform;
 	import swfdata.ColorData;
 	import swfdata.DisplayObjectData;
 	import swfdata.Rectagon;
 	import swfdata.swfdata_inner;
-	import swfdrawer.data.DrawingData;
+	import swfdata.atlas.BaseTextureAtlas;
+	import swfdata.atlas.TextureTransform;
+	import swfdata.atlas.genome.GenomeSubTexture;
 	import swfdrawer.IDrawer;
+	import swfdrawer.data.DrawingData;
 	
 	use namespace swfdata_inner;
 
@@ -61,7 +61,7 @@ package genome.drawer
 		private var texturePadding:Number;
 		private var texturePadding2:Number;
 		
-		protected var textureAtlas:ITextureAtlas;
+		protected var textureAtlas:BaseTextureAtlas;
 		
 		private var drawingData:swfdrawer.data.DrawingData;
 		
@@ -87,7 +87,7 @@ package genome.drawer
 			
 			currentSubTexture = textureAtlas.getTexture(textureId) as GenomeSubTexture;
 			
-			var transform:TextureTransform = currentSubTexture._transform;
+			var transform:TextureTransform = currentSubTexture.transform;
 			var mulX:Number = transform.positionMultiplierX;
 			var mulY:Number = transform.positionMultiplierY;
 			
@@ -117,9 +117,8 @@ package genome.drawer
 			currentSubTexture = null;
 		}
 		
-		public function draw(drawable:DisplayObjectData, drawingData:swfdrawer.data.DrawingData):void 
+		public function draw(drawable:DisplayObjectData, drawingData:DrawingData):void 
 		{
-
 			this.drawingData = drawingData;
 			
 			drawingData.setFromDisplayObject(drawable);
@@ -210,7 +209,7 @@ package genome.drawer
 			
 			var texture:GTexture = currentSubTexture.gTexture;
 			
-			var textureTransform:TextureTransform = currentSubTexture._transform;
+			var textureTransform:TextureTransform = currentSubTexture.transform;
 			
 			//TODO: можно вынести в тот же трансформ т.к это нужно всего единажды считать т.к это статические данные
 			texture.g2d_pivotX = -(drawingBounds.x * textureTransform.scaleX + (texture.width - texturePadding2) / 2);

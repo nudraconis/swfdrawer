@@ -2,14 +2,12 @@ package genome.drawer
 {
 	import flash.geom.Matrix;
 	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	import swfdata.atlas.genome.GenomeTextureAtlas;
-	import swfdata.atlas.ITextureAtlas;
+	import genome.drawer.GenomeDrawer;
 	import swfdata.DisplayObjectData;
 	import swfdata.ShapeData;
 	import swfdata.swfdata_inner;
+	import swfdata.atlas.BaseTextureAtlas;
 	import swfdrawer.data.DrawingData;
-	import genome.drawer.GenomeDrawer;
 	
 	use namespace swfdata_inner;
 	
@@ -17,19 +15,19 @@ package genome.drawer
 	{
 		private var drawMatrix:Matrix = new Matrix();
 		
-		public function GenomeShapeDrawer(atlas:ITextureAtlas, mousePoint:Point) 
+		public function GenomeShapeDrawer(atlas:BaseTextureAtlas, mousePoint:Point) 
 		{
 			super(mousePoint);
 			
 			this.textureAtlas = atlas;
 		}
 		
-		public function set atlas(value:ITextureAtlas):void
+		public function set atlas(value:BaseTextureAtlas):void
 		{
 			textureAtlas = value;
 		}
 		
-		override public function draw(drawable:DisplayObjectData, drawingData:swfdrawer.data.DrawingData):void 
+		override public function draw(drawable:DisplayObjectData, drawingData:DrawingData):void 
 		{
 			super.draw(drawable, drawingData);
 			

@@ -6,8 +6,8 @@ package genome.drawer
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	import genome.drawer.GenomeDrawer;
+	import swfdata.atlas.BaseTextureAtlas;
 	import swfdata.atlas.genome.GenomeTextureAtlas;
-	import swfdata.atlas.ITextureAtlas;
 	import swfdata.ColorData;
 	import swfdata.DisplayObjectData;
 	import swfdata.DisplayObjectTypes;
@@ -30,9 +30,9 @@ package genome.drawer
 		
 		private var drawingData:DrawingData = new DrawingData();
 		
-		private var _atlas:ITextureAtlas;
+		private var _atlas:BaseTextureAtlas;
 		
-		public function GenomeDisplayListDrawer(atlas:ITextureAtlas = null, mousePoint:Point = null) 
+		public function GenomeDisplayListDrawer(atlas:BaseTextureAtlas = null, mousePoint:Point = null) 
 		{
 			this.mousePoint = mousePoint;
 			
@@ -40,7 +40,7 @@ package genome.drawer
 			initialize();
 		}
 		
-		public function set atlas(atlas:ITextureAtlas):void
+		public function set atlas(atlas:BaseTextureAtlas):void
 		{
 			_atlas = atlas;
 			shapeDrawer.atlas = atlas;
