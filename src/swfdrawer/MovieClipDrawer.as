@@ -1,18 +1,14 @@
 package swfdrawer 
 {
 	import flash.geom.Matrix;
-	import flash.geom.Rectangle;
 	import swfdata.DisplayObjectData;
 	import swfdata.IDisplayObjectContainer;
 	import swfdata.MovieClipData;
-	import swfdrawer.data.DrawerMatrixPool;
-	import swfdrawer.data.DrawingData;
 	import swfdrawer.IDrawer;
+	import swfdrawer.data.DrawingData;
 	
 	public class MovieClipDrawer implements IDrawer 
-	{
-		private var matricesPool:DrawerMatrixPool = DrawerMatrixPool.instance;
-		
+	{	
 		private var displayListDrawer:IDrawer
 		
 		public function MovieClipDrawer(displayListDrawer:IDrawer) 
@@ -28,10 +24,9 @@ package swfdrawer
 			
 			var frameData:IDisplayObjectContainer = movieClipDrawable.timeline.currentFrameData();
 				
-			var drawableTransformClone:Matrix = matricesPool.getMatrix();
 			
 			var drawableTrasnform:Matrix = drawable.transform;
-			drawableTransformClone.setTo(drawableTrasnform.a, drawableTrasnform.b, drawableTrasnform.c, drawableTrasnform.d, drawableTrasnform.tx, drawableTrasnform.ty);
+			var drawableTransformClone:PooledMatrix = PooledMatrix.get(drawableTrasnform.a, drawableTrasnform.b, drawableTrasnform.c, drawableTrasnform.d, drawableTrasnform.tx, drawableTrasnform.ty);
 			drawableTransformClone.concat(drawingData.transform);
 			
 			var objectsLenght:int = frameData.displayObjects.length;
@@ -54,7 +49,7 @@ package swfdrawer
 				drawingData.isMasked = currentMaskedState;
 			}
 			
-			matricesPool.disposeMatrix(drawableTransformClone);
+			drawableTransformClone.dispose();
 		}
 	}
 }

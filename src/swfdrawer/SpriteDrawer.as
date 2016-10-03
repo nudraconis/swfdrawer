@@ -6,14 +6,11 @@ package swfdrawer
 	import swfdata.IDisplayObjectContainer;
 	import swfdata.SpriteData;
 	import swfdrawer.DisplayListDrawer;
-	import swfdrawer.data.DrawerMatrixPool;
 	import swfdrawer.data.DrawingData;
 	import swfdrawer.IDrawer;
 	
 	public class SpriteDrawer implements IDrawer 
 	{
-		private var matricesPool:DrawerMatrixPool = DrawerMatrixPool.instance;
-		
 		private var displayListDrawer:IDrawer;
 		
 		public function SpriteDrawer(displayListDrawer:IDrawer) 
@@ -21,20 +18,19 @@ package swfdrawer
 			this.displayListDrawer = displayListDrawer;
 		}
 		
-		public function draw(drawable:DisplayObjectData, drawingData:DrawingData):void 
+		[Inline]
+		public final function draw(drawable:DisplayObjectData, drawingData:DrawingData):void 
 		{
 			var spriteDrawable:SpriteData = drawable as SpriteData;
 			
 			var frameData:IDisplayObjectContainer = spriteDrawable;
 			
-			var drawableTransformClone:Matrix = matricesPool.getMatrix();
-			
 			var drawableTrasnform:Matrix = drawable.transform;
 			
-			drawableTransformClone.setTo(drawableTrasnform.a, drawableTrasnform.b, drawableTrasnform.c, drawableTrasnform.d, drawableTrasnform.tx, drawableTrasnform.ty);
+			var drawableTransformClone:PooledMatrix = PooledMatrix.get(drawableTrasnform.a, drawableTrasnform.b, drawableTrasnform.c, drawableTrasnform.d, drawableTrasnform.tx, drawableTrasnform.ty);
 			drawableTransformClone.concat(drawingData.transform);
 			
-			var objectsLenght:int = frameData.displayObjects.length;
+			var objectsLenght:int = frameData.numChildren;
 			
 			drawingData.setFromDisplayObject(drawable);
 			
@@ -80,7 +76,7 @@ package swfdrawer
 				drawingData.isMasked = currentMaskedState;
 			}
 			
-			matricesPool.disposeMatrix(drawableTransformClone);
+			drawableTransformClone.dispose();
 		}
 	}
 }

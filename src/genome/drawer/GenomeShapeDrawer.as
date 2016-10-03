@@ -35,10 +35,12 @@ package genome.drawer
 			
 			if (drawable.transform)
 			{
-				drawMatrix.concat(drawable.transform);
+				GeomMath.concatMatrices(drawMatrix, drawable.transform, drawMatrix);
+				//drawMatrix.concat(drawable.transform);
 			}
 				
-			drawMatrix.concat(drawingData.transform);
+			GeomMath.concatMatrices(drawMatrix, drawingData.transform, drawMatrix);
+			//drawMatrix.concat(drawingData.transform);
 			
 			var drawableAsShape:ShapeData = drawable as ShapeData;
 			
