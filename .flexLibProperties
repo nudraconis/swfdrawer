@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="swfdrawer.IDrawer"/>
+    <classEntry path="swfdrawer.MovieClipDrawer"/>
+    <classEntry path="swfdrawer.SpriteDrawer"/>
+    <classEntry path="swfdrawer.data.DisplayListDrawData"/>
+    <classEntry path="swfdrawer.data.DrawerMatrixPool"/>
+    <classEntry path="swfdrawer.data.DrawingData"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

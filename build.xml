@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="build.swc" default="build.swc">
+	<!-- Путь до flash sdk -->
+	<property name="flash.config.version" value="21.0" />
+	<property name="flash.sdk.root" value="/Users/k.bondarenko/sdks/AIRSDK_21" />
+	<property name="flash.sdk.rsl" value="${flash.sdk.root}/frameworks/rsls" />
+	<property name="flash.sdk.libs" value="${flash.sdk.root}/frameworks/libs" />
+	<property name="flash.sdk.mxmlc" value="${flash.sdk.root}/bin/mxmlc" />
+	<property name="flash.sdk.compc" value="${flash.sdk.root}/bin/compc" />
+	<property name="flash.sdk.optimizer" value="${flash.sdk.root}/bin/optimizer" />
+	<property name="flash.sdk.digest" value="${flash.sdk.root}/bin/digest" />
+	<property name="flash.sdk.player" value="${flash.sdk.libs}/player/${flash.config.version}/playerglobal.swc" />
+	
+	<target name="build.swc">
+			<echo>Compiling swc</echo>
+			<exec executable="${flash.sdk.compc}" dir="./" failonerror="true">
+				<arg line="-debug=false" />
+				<arg line="-optimize=true" />
+				<arg line="-warnings=true" />
+				<arg line="-directory=false" />
+				
+				<arg line="-external-library-path='${flash.sdk.player}'" />
+				<arg line="-external-library-path='../libs'" />
+				<arg line="-external-library-path='../fastByteArray/bin'" />
+				<arg line="-external-library-path='../swfdata/bin'" />
+				
+				<arg line="-source-path src/" />
+				<arg line="-include-sources src/" />
+				<arg line="-output ../libs/swfdrawer.swc" />
+			</exec>
+		</target>
+</project>
