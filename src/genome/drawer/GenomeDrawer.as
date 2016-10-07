@@ -238,17 +238,6 @@ package genome.drawer
 			
 			var color:ColorData = drawingData.colorData;
 			
-			if(drawingData.isApplyColorTrasnform)
-			{
-				
-				filter = colorFilter.getColorFilter();
-				(filter as GColorMatrixFilter).setMatrix(drawingData.colorTransform.matrix);
-				
-				//filter = new GColorMatrixFilter(drawingData.colorTransform.matrix);
-				//trace(drawingData.colorTransform.matrix);
-				//colorMatrix.setMatrix(drawingData.colorTransform.matrix);
-			}
-			
 			if (hightlight)
 			{
 				filter = outline;
