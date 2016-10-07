@@ -21,8 +21,8 @@ package swfdrawer.data
 		
 		public var transform:Matrix = null;
 		
-		public var isApplyColorTrasnform:Boolean = false;
-		public var colorTransform:ColorMatrix = new ColorMatrix(null);
+		//public var isApplyColorTrasnform:Boolean = false;
+		//public var colorTransform:ColorMatrix = new ColorMatrix(null);
 		
 		public var colorData:ColorData = new ColorData();
 		
@@ -31,13 +31,16 @@ package swfdrawer.data
 			
 		}
 		
-		[Inline]
-		public final function addColorTransform(colorTransformToApply:ColorMatrix):void
-		{
-			isApplyColorTrasnform = true;
+		//[Inline]
+		//public final function addColorTransform(colorTransformToApply:ColorMatrix):void
+		//{
+		//	isApplyColorTrasnform = true;
 			//this.colorTransform.reset();
-			this.colorTransform.premultiply(colorTransformToApply.matrix);
-		}
+			//if (colorTransformToApply && colorTransformToApply.matrix[19] != 0)
+			//	colorData.a *= colorTransformToApply.matrix[19];
+				
+		//	this.colorTransform.premultiply(colorTransformToApply.matrix);
+		//}
 		
 		[Inline]
 		public final function clear():void
@@ -48,7 +51,7 @@ package swfdrawer.data
 			//isClear = true;
 			colorData.clear();
 			
-			isApplyColorTrasnform = false;
+			//isApplyColorTrasnform = false;
 			//colorTransform.reset();// [0] = -1234;
 			
 			maskId = -1;
@@ -62,7 +65,7 @@ package swfdrawer.data
 		public final function mulColorData(colorData:ColorData):void
 		{
 			//isClear = false;
-			this.colorData.mulColorData(colorData);
+			this.colorData.concat(colorData);
 		}
 		
 		[Inline]
@@ -75,7 +78,8 @@ package swfdrawer.data
 			//maskId = maskId || drawable.clipDepth;
 			
 			//TODO: в SpriteDrawer и MovieClipDrawer нужно сохранять состояние колора для каждого из потдеревьев потомков
-			//colorData.mulColorData(drawable.colorData);
+			if(drawable.colorData)
+				colorData.preMultiply(drawable.colorData);
 		}
 		
 	}

@@ -102,9 +102,9 @@ package genome.drawer
 			drawingData.bound = bound;
 			
 			if(colorData != null)
-				drawingData.colorData.mulColorData(colorData);
+				drawingData.colorData.concat(colorData);
 			else if(displayObject.colorData)
-				drawingData.colorData.mulColorData(displayObject.colorData);
+				drawingData.colorData.concat(displayObject.colorData);
 			
 			draw(displayObject, drawingData);
 		}

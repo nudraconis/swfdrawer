@@ -262,10 +262,10 @@ package genome.drawer
 				//color.a = 0.5;
 				//grassWind.setColor(color.a, color.r, color.g, color.b);
 				//grassWind.setColor(0.5, 1, 1, 1);
-				Genome2D.g2d_instance.g2d_context.drawMatrix(texture, drawMatrix.a, drawMatrix.b, drawMatrix.c, drawMatrix.d, transform.tx , transform.ty, color.r, color.g, color.b, color.a, GBlendMode.NORMAL, filter);
+				Genome2D.g2d_instance.g2d_context.drawMatrix(texture, drawMatrix.a, drawMatrix.b, drawMatrix.c, drawMatrix.d, transform.tx , transform.ty, color.redMultiplier, color.greenMultiplier, color.blueMultiplier, color.alphaMultiplier, GBlendMode.NORMAL, filter);
 			}
 			else
-				Genome2D.g2d_instance.g2d_context.drawMatrix(texture, drawMatrix.a, drawMatrix.b, drawMatrix.c, drawMatrix.d, transform.tx , transform.ty, color.r, color.g, color.b, color.a);
+				Genome2D.g2d_instance.g2d_context.drawMatrix(texture, drawMatrix.a, drawMatrix.b, drawMatrix.c, drawMatrix.d, transform.tx , transform.ty, color.redMultiplier, color.greenMultiplier, color.blueMultiplier, color.alphaMultiplier);
 				
 			clearMaskData();
 			

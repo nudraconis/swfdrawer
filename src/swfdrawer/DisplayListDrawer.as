@@ -7,8 +7,8 @@ package swfdrawer
 	import flash.utils.Dictionary;
 	import genome.drawer.GenomeDrawer;
 	import genome.drawer.GenomeShapeDrawer;
+	import swfdata.atlas.BaseTextureAtlas;
 	import swfdata.atlas.genome.GenomeTextureAtlas;
-	import swfdata.atlas.ITextureAtlas;
 	import swfdata.ColorData;
 	import swfdata.DisplayObjectData;
 	import swfdata.DisplayObjectTypes;
@@ -28,9 +28,9 @@ package swfdrawer
 		
 		private var drawingData:DrawingData = new DrawingData();
 		
-		private var _atlas:ITextureAtlas;
+		private var _atlas:BaseTextureAtlas;
 		
-		public function DisplayListDrawer(atlas:ITextureAtlas, mousePoint:Point) 
+		public function DisplayListDrawer(atlas:BaseTextureAtlas, mousePoint:Point) 
 		{
 			this.mousePoint = mousePoint;
 			
@@ -38,7 +38,7 @@ package swfdrawer
 			initialize();
 		}
 		
-		public function set atlas(atlas:ITextureAtlas):void
+		public function set atlas(atlas:BaseTextureAtlas):void
 		{
 			_atlas = atlas;
 			shapeDrawer.atlas = atlas;
@@ -100,9 +100,9 @@ package swfdrawer
 			drawingData.bound = bound;
 			
 			if(colorData != null)
-				drawingData.colorData.mulColorData(colorData);
+				drawingData.colorData.concat(colorData);
 			else if(displayObject.colorData)
-				drawingData.colorData.mulColorData(displayObject.colorData);
+				drawingData.colorData.concat(displayObject.colorData);
 			
 			draw(displayObject, drawingData);
 		}
