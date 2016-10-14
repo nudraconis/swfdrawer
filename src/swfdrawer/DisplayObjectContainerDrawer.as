@@ -28,6 +28,7 @@ package swfdrawer
 			var objectsLenght:int = displayObjectContainer.numChildren;
 			
 			drawingData.setFromDisplayObject(drawable);
+			drawingData.blendMode = drawable.blendMode;
 			var drawingColorData:ColorData = drawingData.colorData;
 			colorDataBuffer.setFromData(drawingColorData);
 		
@@ -42,6 +43,10 @@ package swfdrawer
 				
 				drawingData.transform = drawableTransformClone;
 				
+				// TODO странная ситуация с затиранием и блендингами родителей.
+				if(childDisplayObject.blendMode && !drawable.blendMode)
+					 drawingData.blendMode = childDisplayObject.blendMode;
+
 				displayListDrawer.draw(childDisplayObject, drawingData);
 				
 				drawingData.isMask = currentMaskState;
@@ -49,6 +54,8 @@ package swfdrawer
 				
 				drawingColorData.setFromData(colorDataBuffer);
 			}
+			// возвращаем дате родительский блендинг
+			drawingData.blendMode = drawable.blendMode;
 			
 			drawingColorData.setFromData(colorDataBuffer);
 			drawableTransformClone.dispose();

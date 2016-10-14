@@ -20,6 +20,7 @@ package swfdrawer.data
 		public var isMasked:Boolean = false;
 		
 		public var transform:Matrix = null;
+		public var blendMode:int = 0;
 		
 		//public var isApplyColorTrasnform:Boolean = false;
 		//public var colorTransform:ColorMatrix = new ColorMatrix(null);
@@ -80,6 +81,8 @@ package swfdrawer.data
 			//TODO: в SpriteDrawer и MovieClipDrawer нужно сохранять состояние колора для каждого из потдеревьев потомков
 			if(drawable.colorData)
 				colorData.preMultiply(drawable.colorData);
+			
+			//blendMode = drawable.blendMode;
 		}
 		
 	}
