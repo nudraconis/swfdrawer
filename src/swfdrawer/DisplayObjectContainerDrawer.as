@@ -27,9 +27,8 @@ package swfdrawer
 			var objectsLenght:int = displayObjectContainer.numChildren;
 			
 			drawingData.setFromDisplayObject(drawable);
-			drawingData.blendMode = drawable.blendMode;
-			var drawingColorData:ColorData = drawingData.colorData;
 			
+			var drawingColorData:ColorData = drawingData.colorData;
 			var colorDataBuffer:ColorData = ColorData.getWith(drawingColorData);
 		
 			var currentMaskState:Boolean = drawingData.isMask;

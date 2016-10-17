@@ -78,6 +78,8 @@ package swfdrawer.data
 			isMasked = isMasked || (drawable.mask != null);
 			//maskId = maskId || drawable.clipDepth;
 			
+			blendMode = drawable.blendMode;
+			
 			//TODO: в SpriteDrawer и MovieClipDrawer нужно сохранять состояние колора для каждого из потдеревьев потомков
 			if(drawable.colorData)
 				colorData.preMultiply(drawable.colorData);
