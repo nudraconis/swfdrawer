@@ -9,7 +9,6 @@ package swfdrawer
 	public class DisplayObjectContainerDrawer implements IDrawer 
 	{
 		private var displayListDrawer:IDrawer
-		private var colorDataBuffer:ColorData = new ColorData();
 		
 		public function DisplayObjectContainerDrawer(displayListDrawer:IDrawer) 
 		{
@@ -30,7 +29,8 @@ package swfdrawer
 			drawingData.setFromDisplayObject(drawable);
 			drawingData.blendMode = drawable.blendMode;
 			var drawingColorData:ColorData = drawingData.colorData;
-			colorDataBuffer.setFromData(drawingColorData);
+			
+			var colorDataBuffer:ColorData = ColorData.getWith(drawingColorData);
 		
 			var currentMaskState:Boolean = drawingData.isMask;
 			var currentMaskedState:Boolean = drawingData.isMasked;
@@ -59,6 +59,7 @@ package swfdrawer
 			
 			drawingColorData.setFromData(colorDataBuffer);
 			drawableTransformClone.dispose();
+			colorDataBuffer.dispose();
 		}
 	}
 }
