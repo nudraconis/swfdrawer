@@ -27,6 +27,7 @@ package swfdrawer
 			var objectsLenght:int = displayObjectContainer.numChildren;
 			
 			drawingData.setFromDisplayObject(drawable);
+			drawingData.blendMode = drawable.blendMode;
 			
 			var drawingColorData:ColorData = drawingData.colorData;
 			var colorDataBuffer:ColorData = ColorData.getWith(drawingColorData);
@@ -52,9 +53,10 @@ package swfdrawer
 				drawingData.isMasked = currentMaskedState;
 				
 				drawingColorData.setFromData(colorDataBuffer);
+				// возвращаем дате родительский блендинг
+				drawingData.blendMode = drawable.blendMode;
 			}
-			// возвращаем дате родительский блендинг
-			drawingData.blendMode = drawable.blendMode;
+			//drawingData.blendMode = drawable.blendMode;
 			
 			drawingColorData.setFromData(colorDataBuffer);
 			drawableTransformClone.dispose();
